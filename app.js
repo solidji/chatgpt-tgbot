@@ -2,7 +2,7 @@
  * @Author: goooajw@gmail.com
  * @Date: 2022-12-07 16:52:36
  * @LastEditors: Solid Ji
- * @LastEditTime: 2022-12-10 21:27:08
+ * @LastEditTime: 2022-12-10 23:42:49
  * @Description: Description
  * @FilePath: /openai/chatgpt-tgbot/app.js
  */
@@ -19,11 +19,14 @@ import { SocksProxyAgent } from 'socks-proxy-agent'
 
 // SOCKS proxy to connect to
 // create an instance of the `SocksProxyAgent` class with the proxy server information
-var agent = new SocksProxyAgent(process.env.SOCKS_PROXY)
+var agent =
+  process.env.NODE_ENV === 'production'
+    ? undefined
+    : new SocksProxyAgent(process.env.SOCKS_PROXY)
 
 const bot = new Telegraf(process.env.BOT_TOKEN, {
   telegram: {
-    agent: process.env.NODE_ENV === 'production' ? undefined : agent,
+    agent: agent,
   },
 })
 
