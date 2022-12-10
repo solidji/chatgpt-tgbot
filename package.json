@@ -17,7 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startTest": "NODE_ENV=production node app.js > app.log 2>&1",
-    "start": "NODE_ENV=production node app.js",
+    "start": "NODE_ENV=development node app.js",
     "dev": "NODE_ENV=development node --trace-warnings app.js >> app.log 2>&1"
   },
   "devDependencies": {},

@@ -2,7 +2,7 @@
  * @Author: goooajw@gmail.com
  * @Date: 2022-12-07 16:52:36
  * @LastEditors: Solid Ji
- * @LastEditTime: 2022-12-10 23:42:49
+ * @LastEditTime: 2022-12-11 00:39:26
  * @Description: Description
  * @FilePath: /openai/chatgpt-tgbot/app.js
  */
@@ -24,11 +24,12 @@ var agent =
     ? undefined
     : new SocksProxyAgent(process.env.SOCKS_PROXY)
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {
-  telegram: {
-    agent: agent,
-  },
-})
+const bot = new Telegraf(process.env.BOT_TOKEN)
+// const bot = new Telegraf(process.env.BOT_TOKEN, {
+//   telegram: {
+//     agent: agent,
+//   },
+// })
 
 bot.start((ctx) => ctx.reply('Welcome'))
 bot.help((ctx) => ctx.reply('Send me a sticker'))
@@ -49,7 +50,7 @@ let answer = ''
 bot.on(message('text'), async (ctx) => {
   try {
     // Explicit usage
-    console.log('🚀 ~ file: app.js:55 ~ bot.on ~ chatType', ctx.chat.type)
+    // console.log('🚀 ~ file: app.js:55 ~ bot.on ~ chatType', ctx.chat.type)
     logger('🚀 ~ file: app.js:48 ~ bot.on ~ message', ctx.message.text)
     if (ctx.chat.type === 'group' || ctx.chat.type === 'supergroup') {
       // logger(ctx.botInfo)
